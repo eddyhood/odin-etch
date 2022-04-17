@@ -14,10 +14,15 @@ function randomColor() {
     for(i = 0; i < 3; i++) {
         let random = Math.floor(Math.random()*(255));
         rgb.push(random);
-    } return rgb;
+    } return rgb.join();
 }
 
 //Grab each div in the grid
-const pixels = document.getElementsByClassName('pixel');
-console.log(pixels)
+const pixels = document.querySelectorAll('.pixel');
 
+pixels.forEach(pixel => {
+    pixel.addEventListener('mouseenter', function changeColor(event) {
+        rgb = randomColor();
+        event.target.style.backgroundColor = 'rgb('+rgb+')';
+    })
+})
