@@ -2,14 +2,36 @@
 const container = document.getElementById('drawGrid');
 const width = document.getElementById('squaresWide');
 const height = document.getElementById('squaresHigh');
-console.log(width)
-console.log(height)
-//Insert 16 squares into the grid
-for(i = 0; i < 256; i++) {
-    let box = document.createElement('div');
-    box.classList.add('pixel');
-    container.appendChild(box);
-}
+
+let artWidth = 1;
+let artHeight = 1;
+
+//Grab the buttons
+const drawButton = document.getElementById('draw');
+
+const resetButton = document.getElementById('reset');
+
+
+//Listen for user input into artboard field
+width.addEventListener('input', e => {
+    artWidth = e.target.value;
+});
+
+height.addEventListener('input', e => {
+    artHeight = e.target.value;
+})
+
+drawButton.addEventListener('click', function drawBoard() {
+    totalBoxes = artWidth * artHeight;
+    for(i = 0; i < totalBoxes; i++) {
+        let box = document.createElement('div');
+        box.classList.add('pixel');
+        container.appendChild(box);
+    }
+    startDraw();
+});
+
+
 
 //calculate a random RGB value
 function randomColor() {
@@ -21,11 +43,13 @@ function randomColor() {
 }
 
 //Grab each div in the grid
-const pixels = document.querySelectorAll('.pixel');
-
-pixels.forEach(pixel => {
-    pixel.addEventListener('mouseenter', function changeColor(event) {
-        rgb = randomColor();
-        event.target.style.backgroundColor = 'rgb('+rgb+')';
+function startDraw() {
+    const pixels = document.querySelectorAll('.pixel');
+    
+    pixels.forEach(pixel => {
+        pixel.addEventListener('mouseenter', function changeColor(event) {
+            rgb = randomColor();
+            event.target.style.backgroundColor = 'rgb('+rgb+')';
+        })
     })
-})
+}

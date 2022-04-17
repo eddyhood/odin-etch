@@ -32,7 +32,7 @@ input {
 #drawGrid {
     display: grid;
     grid-template-columns: repeat(16, 25px);
-    grid-template-rows: repeat(16, 25px);
+    grid-template-rows: auto;
     margin-top: 25px;
     border: #385E72 solid 2px;
 }
@@ -44,6 +44,10 @@ input {
     border: #B7CFDC solid 1px; 
 }
 
+.buttons {
+    display:flex;
+    gap: 25px;
+}
 button {
     font-size: 1.5rem;
     padding: 0.25rem 1.5rem;
