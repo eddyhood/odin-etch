@@ -1,5 +1,4 @@
 //Grab the section that will hold the grid
-
 const container = document.getElementById('drawGrid');
 
 //Insert 16 squares into the grid
@@ -17,4 +16,8 @@ function randomColor() {
         rgb.push(random);
     } return rgb;
 }
+
+//Grab each div in the grid
+const pixels = document.getElementsByClassName('pixel');
+console.log(pixels)
 
