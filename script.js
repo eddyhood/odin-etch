@@ -8,3 +8,13 @@ for(i = 0; i < 256; i++) {
     box.classList.add('pixel');
     container.appendChild(box);
 }
+
+//calculate a random RGB value
+function randomColor() {
+    let rgb = []
+    for(i = 0; i < 3; i++) {
+        let random = Math.floor(Math.random()*(255));
+        rgb.push(random);
+    } return rgb;
+}
+
