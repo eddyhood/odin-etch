@@ -3,9 +3,10 @@ const container = document.getElementById('drawGrid');
 const width = document.getElementById('squaresWide');
 const height = document.getElementById('squaresHigh');
 
+//Set variables for initial artboard
 let artWidth;
 let artHeight;
-
+let totalBoxes = artWidth * artHeight;
 
 //Grab the buttons
 const drawButton = document.getElementById('draw');
@@ -26,14 +27,15 @@ height.addEventListener('input', e => {
     
 })
 
-let totalBoxes = artWidth * artHeight;
-
 drawButton.addEventListener('click', drawBoard)
 
 resetButton.addEventListener('click', resetGrid)
 
+//Set game logic
 function drawBoard() {
+    //clear the board
     resetGrid();
+    //redraw the board with new measurements
     totalBoxes = artWidth * artHeight;
     for(i = 0; i < totalBoxes; i++) {
         let box = document.createElement('div');
@@ -43,12 +45,13 @@ function drawBoard() {
     startDraw();
 }
 
-window.addEventListener('load', drawBoard);
 
 function resetGrid() {
     const existingGrid = document.getElementById('drawGrid');
 
     existingGrid.textContent = '';
+    width.textContent = 'Enter Width';
+
 }
 
 //calculate a random RGB value
