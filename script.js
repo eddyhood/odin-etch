@@ -3,8 +3,9 @@ const container = document.getElementById('drawGrid');
 const width = document.getElementById('squaresWide');
 const height = document.getElementById('squaresHigh');
 
-let artWidth = 1;
-let artHeight = 1;
+let artWidth;
+let artHeight;
+
 
 //Grab the buttons
 const drawButton = document.getElementById('draw');
@@ -14,14 +15,25 @@ const resetButton = document.getElementById('reset');
 
 //Listen for user input into artboard field
 width.addEventListener('input', e => {
-    artWidth = e.target.value;
+    artWidth = 0;
+    artWidth = parseInt(e.target.value);
+    
 });
 
 height.addEventListener('input', e => {
-    artHeight = e.target.value;
+    artHeight = 0;
+    artHeight = parseInt(e.target.value);
+    
 })
 
-drawButton.addEventListener('click', function drawBoard() {
+let totalBoxes = artWidth * artHeight;
+
+drawButton.addEventListener('click', drawBoard)
+
+resetButton.addEventListener('click', resetGrid)
+
+function drawBoard() {
+    resetGrid();
     totalBoxes = artWidth * artHeight;
     for(i = 0; i < totalBoxes; i++) {
         let box = document.createElement('div');
@@ -29,9 +41,15 @@ drawButton.addEventListener('click', function drawBoard() {
         container.appendChild(box);
     }
     startDraw();
-});
+}
 
+window.addEventListener('load', drawBoard);
 
+function resetGrid() {
+    const existingGrid = document.getElementById('drawGrid');
+
+    existingGrid.textContent = '';
+}
 
 //calculate a random RGB value
 function randomColor() {
@@ -53,3 +71,4 @@ function startDraw() {
         })
     })
 }
+
